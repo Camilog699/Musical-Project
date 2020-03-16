@@ -3,7 +3,7 @@ import sys
 import subprocess
 import os
 import ctypes
-from time import sleep
+import time
 from pydub import AudioSegment
 from pydub.playback import play
 pygame.init()
@@ -36,7 +36,11 @@ class GUI:
                     pygame.quit()
                     sys.exit()
             self.drawAuto(screen)
+<<<<<<< HEAD
             sleep(1.0)
+=======
+            time.sleep(2.0)
+>>>>>>> d9393014f892718d67ae74cfa09d0b0da0936401
             self.generateChange(screen)
             pygame.display.update()
 
@@ -46,6 +50,7 @@ class GUI:
                 # conditions to assignment of colors
                 self.assignColors(
                     self.automaton.cells[i][j], self.automaton.cellsT[i][j], self.automaton.cellsTh[i][j], screen)
+        pygame.display.update()
 
     def assignColors(self, cell, cellT, cellTh, screen):
         white = (255, 255, 255)
@@ -66,5 +71,11 @@ class GUI:
                 pygame.draw.rect(screen, self.automaton.cellsT[i][j].color, ((
                     self.automaton.cellsT[i][j].posX+2.9, self.automaton.cellsT[i][j].posY+2.9, 30, 30)))
                 pygame.draw.rect(screen, self.automaton.cellsTh[i][j].color, ((
+<<<<<<< HEAD
                     self.automaton.cellsTh[i][j].posX+2.9, self.automaton.cellsTh[i][j].posY+2.9, 30, 30)))
                 sleep(0.5)
+=======
+                    self.automaton.cellsTh[i][j].posX + 2.9, self.automaton.cellsTh[i][j].posY + 2.9, 30, 30)))
+                pygame.display.update()
+                time.sleep(1.0)
+>>>>>>> d9393014f892718d67ae74cfa09d0b0da0936401

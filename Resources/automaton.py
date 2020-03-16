@@ -29,20 +29,39 @@ class Automaton:
         vectorT = []
         vectorTh = []
         vect = []
+        vectt = []
+        vecth = []
+        color = None
         for i in range(lim):
-            cell = Cell(0, 0, "#FFFFFF", randint(0, limN), "")
-            cellT = Cell(0, 0, cell.color, cell.number, "")
-            cellTh = Cell(0, 0, cell.color, cell.number, "")
+            num = randint(0, limN)
+            if num is 0:
+                color = (241, 243, 244)
+            elif num is 1:
+                color = (0, 214, 191)
+            elif num is 2:
+                color = (214, 159, 0)
+            elif num is 3:
+                color = (214, 0, 0)
+            elif num is 4:
+                color = (175, 0, 214)
+            cell = Cell(0, 0, color, num, "Resources/sounds/" +
+                        instruments[0] + "/" + instruments[0] + "" + str(num) + ".wav")
+            cellT = Cell(0, 0, cell.color, cell.number, "Resources/sounds/" +
+                         instruments[1] + "/" + instruments[1] + "" + str(cell.number) + ".wav")
+            cellTh = Cell(0, 0, cell.color, cell.number, "Resources/sounds/" +
+                          instruments[2] + "/" + instruments[2] + "" + str(cell.number) + ".wav")
             vector.append(cell)
             vectorT.append(cellT)
             vectorTh.append(cellTh)
-            vect.append(cell.number)
+            vect.append(cell.file)
+            vectt.append(cellT.file)
+            vecth.append(cellTh.file)
         self.cells.append(vector)
         self.cellsT.append(vectorT)
         self.cellsTh.append(vectorTh)
-        self.createCellR(comb, vector)
+        self.createCellR(comb, vector, instruments)
 
-    def createCellR(self, comb, vector):
+    def createCellR(self, comb, vector, instruments):
         if len(self.cells) == 100:
             return True
         Prev = 0
@@ -51,7 +70,7 @@ class Automaton:
         vect = []
         vectT = []
         vectTh = []
-        vecto = []
+        color = None
         for i in range(len(vector)):
             if i == 0:
                 Curr = vector[i].number
@@ -65,21 +84,33 @@ class Automaton:
                 Curr = vector[i].number
             point = (Prev, Curr, Post)
             number = self.validateTuple(point, comb)
-            if(number != -1):
-                cell = Cell(0, 0, "#FFFFFF", number, "")
-                cellT = Cell(0, 0, cell.color, cell.number, "")
-                cellTh = Cell(0, 0, cell.color, cell.number, "")
+            if (number != -1):
+                if number is 0:
+                    color = (241, 243, 244)
+                elif number is 1:
+                    color = (0, 214, 191)
+                elif number is 2:
+                    color = (214, 159, 0)
+                elif number is 3:
+                    color = (214, 0, 0)
+                elif number is 4:
+                    color = (175, 0, 214)
+                cell = Cell(0, 0, color, number, "Resources/sounds/" +
+                            instruments[0] + "/" + instruments[0] + "" + str(number) + ".wav")
+                cellT = Cell(0, 0, cell.color, cell.number, "Resources/sounds/" +
+                             instruments[1] + "/" + instruments[1] + "" + str(number) + ".wav")
+                cellTh = Cell(0, 0, cell.color, cell.number, "Resources/sounds/" +
+                              instruments[2] + "/" + instruments[2] + "" + str(number) + ".wav")
                 vect.append(cell)
                 vectT.append(cell)
                 vectTh.append(cell)
-                vecto.append(cell.number)
                 Prev = 0
                 Curr = 0
                 Post = 0
         self.cells.append(vect)
         self.cellsT.append(vectT)
         self.cellsTh.append(vectTh)
-        self.createCellR(comb, vect)
+        self.createCellR(comb, vect, instruments)
 
     def validateTuple(self, point, comb):
         for points in comb:

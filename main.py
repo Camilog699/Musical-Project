@@ -8,6 +8,8 @@ def main():
     comb = automaton.createBase(base)
     automaton.createCell(comb, 10, base - 1, ['Bajo', 'Guitarra', 'saxo'])
     GUI(automaton)
+    # bajo, caja musical, campana,
+    #drum, flauta, guitarra, organeta, timbales, violin, voz
 
 
 main()

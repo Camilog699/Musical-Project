@@ -23,23 +23,31 @@ class GUI:
         return size
 
     def draw(self):
-        screen = pygame.display.set_mode(self.screen_size())
+        screen = pygame.display.set_mode(self.screen_size(), pygame.RESIZABLE)
         pygame.display.set_caption('Automaton')
 
-        for i in self.automaton.cells:
+        x = 0
+        y = 0
+        for i in range(len(self.automaton.cells)):
             for num in self.automaton.cells[i]:
-                data = num
-                # conditions to assignment of colors
-                self.assignColors(data, screen)
+                if self.automaton.cells[0]:
+                    data = num
+                if self.automaton.cells[i]:
+                    data = num
+                    x = x + 30
+                    # conditions to assignment of colors
+                self.assignColors(data, x, y, screen)
+            y = y + 30
 
         while True:
             screen.fill((0, 0, 0))
-            if event.type is pygame.QUIT:
-                pygame.quit()
-                sys.exit()
-            pygame.display.update()
+            for event in pygame.event.get():
+                if event.type is pygame.QUIT:
+                    pygame.quit()
+                    sys.exit()
+                pygame.display.update()
 
-    def assignColors(self, data, screen):
+    def assignColors(self, data, x, y, screen):
         # colors
         green = (39, 214, 0)
         blue = (0, 214, 191)
@@ -47,5 +55,13 @@ class GUI:
         red = (214, 0, 0)
         purple = (175, 0, 214)
 
-        if data == 0:
-            pygame.draw.polygon(screen, green, )
+        if data is 0:
+            pygame.draw.rect(screen, green, ((x, y), (30, 30)))
+        elif data is 1:
+            pygame.draw.rect(screen, blue, ((x, y), (30, 30)))
+        elif data is 2:
+            pygame.draw.rect(screen, orange, ((x, y), (30, 30)))
+        elif data is 3:
+            pygame.draw.rect(screen, red, ((x, y), (30, 30)))
+        elif data is 4:
+            pygame.draw.rect(screen, purple, ((x, y), (30, 30)))

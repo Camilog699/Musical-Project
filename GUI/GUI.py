@@ -3,6 +3,8 @@ import sys
 import subprocess
 import os
 import ctypes
+from pydub import AudioSegment
+from pydub.playback import play
 pygame.init()
 
 
@@ -41,7 +43,8 @@ class GUI:
         for i in range(len(self.automaton.cells)):
             for j in range(len(self.automaton.cells[i])):
                 # conditions to assignment of colors
-                self.assignColors(self.automaton.cells[i][j], self.automaton.cellsT[i][j], self.automaton.cellsTh[i][j], screen)
+                self.assignColors(
+                    self.automaton.cells[i][j], self.automaton.cellsT[i][j], self.automaton.cellsTh[i][j], screen)
             y = y + 40
             x = 0
 
@@ -50,10 +53,14 @@ class GUI:
         black = (0, 0, 0)
 
         pygame.draw.rect(screen, black, ((cell.posX, cell.posY, 35, 35)), 1)
-        pygame.draw.rect(screen, white, ((cell.posX+2.9, cell.posY+2.9, 30, 30)))
+        pygame.draw.rect(
+            screen, white, ((cell.posX+2.9, cell.posY+2.9, 30, 30)))
 
         pygame.draw.rect(screen, black, ((cellT.posX, cellT.posY, 35, 35)), 1)
-        pygame.draw.rect(screen, white, ((cellT.posX+2.9, cell.posY+2.9, 30, 30)))
+        pygame.draw.rect(
+            screen, white, ((cellT.posX+2.9, cell.posY+2.9, 30, 30)))
 
-        pygame.draw.rect(screen, black, ((cellTh.posX, cellTh.posY, 35, 35)), 1)
-        pygame.draw.rect(screen, white, ((cellTh.posX+2.9, cellTh.posY+2.9, 30, 30)))
+        pygame.draw.rect(
+            screen, black, ((cellTh.posX, cellTh.posY, 35, 35)), 1)
+        pygame.draw.rect(
+            screen, white, ((cellTh.posX+2.9, cellTh.posY+2.9, 30, 30)))

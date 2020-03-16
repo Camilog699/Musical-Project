@@ -3,7 +3,7 @@ import sys
 import subprocess
 import os
 import ctypes
-import time
+from time import sleep
 from pydub import AudioSegment
 from pydub.playback import play
 pygame.init()
@@ -36,7 +36,7 @@ class GUI:
                     pygame.quit()
                     sys.exit()
             self.drawAuto(screen)
-            time.sleep(2.0)
+            sleep(1.5)
             self.generateChange(screen)
             pygame.display.update()
 
@@ -54,10 +54,8 @@ class GUI:
 
         pygame.draw.rect(
             screen, white, ((cell.posX+2.9, cell.posY+2.9, 30, 30)))
-
         pygame.draw.rect(
             screen, white, ((cellT.posX+2.9, cell.posY+2.9, 30, 30)))
-
         pygame.draw.rect(
             screen, white, ((cellTh.posX+2.9, cellTh.posY+2.9, 30, 30)))
 

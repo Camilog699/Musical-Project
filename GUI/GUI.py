@@ -26,42 +26,34 @@ class GUI:
         screen = pygame.display.set_mode(self.screen_size(), pygame.RESIZABLE)
         pygame.display.set_caption('Automaton')
 
-        x = 0
-        y = 0
-        for i in range(len(self.automaton.cells)):
-            for num in self.automaton.cells[i]:
-                if self.automaton.cells[0]:
-                    data = num
-                if self.automaton.cells[i]:
-                    data = num
-                    x = x + 30
-                    # conditions to assignment of colors
-                self.assignColors(data, x, y, screen)
-            y = y + 30
-
         while True:
             screen.fill((0, 0, 0))
             for event in pygame.event.get():
                 if event.type is pygame.QUIT:
                     pygame.quit()
                     sys.exit()
-                pygame.display.update()
+            self.drawAuto(screen)
+            pygame.display.update()
 
-    def assignColors(self, data, x, y, screen):
-        # colors
-        green = (39, 214, 0)
-        blue = (0, 214, 191)
-        orange = (214, 159, 0)
-        red = (214, 0, 0)
-        purple = (175, 0, 214)
+    def drawAuto(self, screen):
+        x = 0
+        y = 0
+        for i in range(len(self.automaton.cells)):
+            for j in range(len(self.automaton.cells[i])):
+                # conditions to assignment of colors
+                self.assignColors(self.automaton.cells[i][j], self.automaton.cellsT[i][j], self.automaton.cellsTh[i][j], screen)
+            y = y + 40
+            x = 0
 
-        if data is 0:
-            pygame.draw.rect(screen, green, ((x, y), (30, 30)))
-        elif data is 1:
-            pygame.draw.rect(screen, blue, ((x, y), (30, 30)))
-        elif data is 2:
-            pygame.draw.rect(screen, orange, ((x, y), (30, 30)))
-        elif data is 3:
-            pygame.draw.rect(screen, red, ((x, y), (30, 30)))
-        elif data is 4:
-            pygame.draw.rect(screen, purple, ((x, y), (30, 30)))
+    def assignColors(self, cell, cellT, cellTh, screen):
+        white = (255, 255, 255)
+        black = (0, 0, 0)
+
+        pygame.draw.rect(screen, black, ((cell.posX, cell.posY, 35, 35)), 1)
+        pygame.draw.rect(screen, white, ((cell.posX+2.9, cell.posY+2.9, 30, 30)))
+
+        pygame.draw.rect(screen, black, ((cellT.posX, cellT.posY, 35, 35)), 1)
+        pygame.draw.rect(screen, white, ((cellT.posX+2.9, cell.posY+2.9, 30, 30)))
+
+        pygame.draw.rect(screen, black, ((cellTh.posX, cellTh.posY, 35, 35)), 1)
+        pygame.draw.rect(screen, white, ((cellTh.posX+2.9, cellTh.posY+2.9, 30, 30)))

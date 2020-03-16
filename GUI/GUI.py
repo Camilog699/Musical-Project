@@ -4,6 +4,8 @@ import subprocess
 import os
 import ctypes
 from time import sleep
+from pydub import AudioSegment
+from pydub.playback import play
 pygame.init()
 
 
@@ -34,8 +36,8 @@ class GUI:
                     pygame.quit()
                     sys.exit()
             self.drawAuto(screen)
-            sleep(2.0)
-            self.generateChange(screen)
+            # sleep(2.0)
+            # self.generateChange(screen)
             pygame.display.update()
 
     def drawAuto(self, screen):
@@ -49,17 +51,22 @@ class GUI:
         white = (255, 255, 255)
         black = (0, 0, 0)
 
-        pygame.draw.rect(screen, black, ((cell.posX, cell.posY, 35, 35)), 1)
         pygame.draw.rect(
             screen, white, ((cell.posX+2.9, cell.posY+2.9, 30, 30)))
 
-        pygame.draw.rect(screen, black, ((cellT.posX, cellT.posY, 35, 35)), 1)
         pygame.draw.rect(
             screen, white, ((cellT.posX+2.9, cell.posY+2.9, 30, 30)))
 
         pygame.draw.rect(
-            screen, black, ((cellTh.posX, cellTh.posY, 35, 35)), 1)
-        pygame.draw.rect(
             screen, white, ((cellTh.posX+2.9, cellTh.posY+2.9, 30, 30)))
 
-    def generateChange(screen):
+    def generateChange(self, screen):
+        for i in range(len(self.automaton.cells)):
+            for j in range(len(self.automaton.cells[i])):
+                pygame.draw.rect(screen, self.automaton.cells[i][j].color, ((
+                    self.automaton.cells[i][j].posX+2.9, self.automaton.cells[i][j].posY+2.9, 30, 30)))
+                pygame.draw.rect(screen, self.automaton.cellsT[i][j].color, ((
+                    self.automaton.cellsT[i][j].posX+2.9, self.automaton.cellsT[i][j].posY+2.9, 30, 30)))
+                pygame.draw.rect(screen, self.automaton.cellsTh[i][j].color, ((
+                    self.automaton.cellsTh[i][j].posX+2.9, self.automaton.cellsTh[i][j].posY+2.9, 30, 30)))
+                sleep(1.0)

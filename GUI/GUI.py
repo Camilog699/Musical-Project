@@ -36,8 +36,8 @@ class GUI:
                     pygame.quit()
                     sys.exit()
             self.drawAuto(screen)
-            # sleep(2.0)
-            # self.generateChange(screen)
+            sleep(1.0)
+            self.generateChange(screen)
             pygame.display.update()
 
     def drawAuto(self, screen):
@@ -53,10 +53,8 @@ class GUI:
 
         pygame.draw.rect(
             screen, white, ((cell.posX+2.9, cell.posY+2.9, 30, 30)))
-
         pygame.draw.rect(
             screen, white, ((cellT.posX+2.9, cell.posY+2.9, 30, 30)))
-
         pygame.draw.rect(
             screen, white, ((cellTh.posX+2.9, cellTh.posY+2.9, 30, 30)))
 
@@ -69,4 +67,4 @@ class GUI:
                     self.automaton.cellsT[i][j].posX+2.9, self.automaton.cellsT[i][j].posY+2.9, 30, 30)))
                 pygame.draw.rect(screen, self.automaton.cellsTh[i][j].color, ((
                     self.automaton.cellsTh[i][j].posX+2.9, self.automaton.cellsTh[i][j].posY+2.9, 30, 30)))
-                sleep(1.0)
+                sleep(0.5)

@@ -11,8 +11,9 @@ class Automaton:
         arr = []
         for base in range(num):
             arr.append(base)
-        comb = list(itertools.product(arr, repeat=num))
-        comb = self.assign(comb, num-1)
+        comb = list(itertools.product(arr, repeat=3))
+        comb = self.assign(comb, num - 1)
+        print(comb, "\n")
         return comb
 
     def assign(self, arr, lim):
@@ -22,30 +23,50 @@ class Automaton:
             newArr.append([num, num2])
         return newArr
 
-    def createCell(self, comb, lim, limN, base):
+    def createCell(self, comb, lim, limN):
         vector = []
+        vect = []
         for i in range(lim):
             cell = Cell(0, 0, "#FFFFFF", randint(0, limN), "")
             vector.append(cell)
+            vect.append(cell.number)
+        print(vect, "\n")
         self.cells.append(vector)
-        self.createCellR(comb, 0, base)
+        self.createCellR(comb, vector)
 
-    def createCellR(self, comb, Pos, base):
-        point = (0)
-        vector = []
-        create = False
-        for i in range(self.cells[Pos]):
-            if (i + base) % base is 0:
-                point.append(self.cells[Pos][i])
-                for points in comb:
-                    if point == points[0]:
-                        cell = Cell(0, 0, "#FFFFFF", points[1], "")
-                        vector.append(cell)
-                        create = True
-                        break
-                if not create:
-                    point.append(self.cells[Pos][i + 1])
+    def createCellR(self, comb, vector):
+        if len(self.cells) == 100:
+            return True
+        Prev = 0
+        Curr = 0
+        Post = 0
+        vect = []
+        vecto = []
+        for i in range(len(vector)):
+            if i == 0:
+                Curr = vector[i].number
+                Post = vector[i + 1].number
+            elif i > 0 and i < len(vector) - 1:
+                Prev = vector[i - 1].number
+                Curr = vector[i].number
+                Post = vector[i + 1].number
+            elif i == len(vector) - 1:
+                Prev = vector[i - 1].number
+                Curr = vector[i].number
+            point = (Prev, Curr, Post)
+            number = self.validateTuple(point, comb)
+            if(number != -1):
+                cell = Cell(0, 0, "#FFFFFF", number, "")
+                vect.append(cell)
+                vecto.append(cell.number)
+                Prev = 0
+                Curr = 0
+                Post = 0
+        self.cells.append(vect)
+        self.createCellR(comb, vect)
 
-
-    def validatePoint(self, point, comb):
-        pass
+    def validateTuple(self, point, comb):
+        for points in comb:
+            if points[0] == point:
+                return points[1]
+        return -1

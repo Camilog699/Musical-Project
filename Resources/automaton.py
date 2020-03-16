@@ -48,7 +48,7 @@ class Automaton:
                         instruments[0] + "/" + instruments[0] + "" + str(num) + ".wav")
             cellT = Cell(posX + 470, posY, cell.color, cell.number, "Resources/sounds/" +
                          instruments[1] + "/" + instruments[1] + "" + str(cell.number) + ".wav")
-            cellTh = Cell(posX + 970, posY, cell.color, cell.number, "Resources/sounds/" +
+            cellTh = Cell(posX + 940, posY, cell.color, cell.number, "Resources/sounds/" +
                           instruments[2] + "/" + instruments[2] + "" + str(cell.number) + ".wav")
             vector.append(cell)
             vectorT.append(cellT)
@@ -99,11 +99,11 @@ class Automaton:
                                 instruments[0] + "/" + instruments[0] + "" + str(number) + ".wav")
                     cellT = Cell(posX + 470, posY, cell.color, cell.number, "Resources/sounds/" +
                                  instruments[1] + "/" + instruments[1] + "" + str(number) + ".wav")
-                    cellTh = Cell(posX + 970, posY, cell.color, cell.number, "Resources/sounds/" +
+                    cellTh = Cell(posX + 940, posY, cell.color, cell.number, "Resources/sounds/" +
                                   instruments[2] + "/" + instruments[2] + "" + str(number) + ".wav")
                     vect.append(cell)
-                    vectT.append(cell)
-                    vectTh.append(cell)
+                    vectT.append(cellT)
+                    vectTh.append(cellTh)
                     Prev = 0
                     Curr = 0
                     Post = 0

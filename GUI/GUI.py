@@ -65,10 +65,22 @@ class GUI:
         for i in range(len(self.automaton.cells)):
             for j in range(len(self.automaton.cells[i])):
                 pygame.draw.rect(screen, self.automaton.cells[i][j].color, ((
-                    self.automaton.cells[i][j].posX+2.9, self.automaton.cells[i][j].posY+2.9, 30, 30)))
+                    self.automaton.cells[i][j].posX + 2.9, self.automaton.cells[i][j].posY + 2.9, 30, 30)))
+                song = AudioSegment.from_wav(self.automaton.cells[i][j].file)
                 pygame.draw.rect(screen, self.automaton.cellsT[i][j].color, ((
-                    self.automaton.cellsT[i][j].posX+2.9, self.automaton.cellsT[i][j].posY+2.9, 30, 30)))
+                    self.automaton.cellsT[i][j].posX + 2.9, self.automaton.cellsT[i][j].posY + 2.9, 30, 30)))
+                songT = AudioSegment.from_wav(self.automaton.cellsT[i][j].file)
                 pygame.draw.rect(screen, self.automaton.cellsTh[i][j].color, ((
                     self.automaton.cellsTh[i][j].posX + 2.9, self.automaton.cellsTh[i][j].posY + 2.9, 30, 30)))
+                songTh = AudioSegment.from_wav(
+                    self.automaton.cellsTh[i][j].file)
+                mixed = song.overlay(songT)
+                mixedF = mixed.overlay(songTh)
+                play(mixedF)
+                song = None
+                songT = None
+                songTh = None
+                mixed = None
+                mixedF = None
                 pygame.display.update()
-                time.sleep(1.0)
+                # time.sleep(1.0)

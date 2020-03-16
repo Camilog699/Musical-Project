@@ -26,7 +26,10 @@ class GUI:
         for num in self.automaton.cells:
             data = num
             # conditions to assignment of colors
-            self.Assigncolors(data)
+            self.assignColors(data)
 
         screen = pygame.display.set_mode(self.screen_size())
         pygame.display.set_caption('Automaton')
+
+    def assignColors(self, data):
+        pass

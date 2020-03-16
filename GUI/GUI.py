@@ -3,7 +3,7 @@ import sys
 import subprocess
 import os
 import ctypes
-import time
+from time import sleep
 from pydub import AudioSegment
 from pydub.playback import play
 pygame.init()
@@ -36,11 +36,7 @@ class GUI:
                     pygame.quit()
                     sys.exit()
             self.drawAuto(screen)
-<<<<<<< HEAD
-            sleep(1.0)
-=======
-            time.sleep(2.0)
->>>>>>> d9393014f892718d67ae74cfa09d0b0da0936401
+            sleep(1.5)
             self.generateChange(screen)
             pygame.display.update()
 
@@ -71,11 +67,6 @@ class GUI:
                 pygame.draw.rect(screen, self.automaton.cellsT[i][j].color, ((
                     self.automaton.cellsT[i][j].posX+2.9, self.automaton.cellsT[i][j].posY+2.9, 30, 30)))
                 pygame.draw.rect(screen, self.automaton.cellsTh[i][j].color, ((
-<<<<<<< HEAD
                     self.automaton.cellsTh[i][j].posX+2.9, self.automaton.cellsTh[i][j].posY+2.9, 30, 30)))
-                sleep(0.5)
-=======
-                    self.automaton.cellsTh[i][j].posX + 2.9, self.automaton.cellsTh[i][j].posY + 2.9, 30, 30)))
                 pygame.display.update()
-                time.sleep(1.0)
->>>>>>> d9393014f892718d67ae74cfa09d0b0da0936401
+                sleep(0.5)

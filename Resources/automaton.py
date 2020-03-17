@@ -35,9 +35,9 @@ class Automaton:
         for i in range(lim):
             num = randint(0, limN)
             if num is 0:
-                color = (241, 243, 244)
+                color = (143, 138, 137)
             elif num is 1:
-                color = (0, 139, 214)
+                color = (0, 214, 191)
             elif num is 2:
                 color = (214, 159, 0)
             elif num is 3:
@@ -45,11 +45,11 @@ class Automaton:
             elif num is 4:
                 color = (175, 0, 214)
             cell = Cell(posX, posY, color, num, "Resources/sounds/" +
-                        instruments[0] + "/" + instruments[0] + "" + str(num) + ".wav")
+                        instruments[0] + "/" + instruments[0] + "" + str(num) + ".ogg")
             cellT = Cell(posX + 470, posY, cell.color, cell.number, "Resources/sounds/" +
-                         instruments[1] + "/" + instruments[1] + "" + str(cell.number) + ".wav")
+                         instruments[1] + "/" + instruments[1] + "" + str(cell.number) + ".ogg")
             cellTh = Cell(posX + 940, posY, cell.color, cell.number, "Resources/sounds/" +
-                          instruments[2] + "/" + instruments[2] + "" + str(cell.number) + ".wav")
+                          instruments[2] + "/" + instruments[2] + "" + str(cell.number) + ".ogg")
             vector.append(cell)
             vectorT.append(cellT)
             vectorTh.append(cellTh)
@@ -86,7 +86,7 @@ class Automaton:
                 number = self.validateTuple(point, comb)
                 if (number != -1):
                     if number is 0:
-                        color = (241, 243, 244)
+                        color = (143, 138, 137)
                     elif number is 1:
                         color = (0, 214, 191)
                     elif number is 2:
@@ -96,11 +96,11 @@ class Automaton:
                     elif number is 4:
                         color = (175, 0, 214)
                     cell = Cell(posX, posY, color, number, "Resources/sounds/" +
-                                instruments[0] + "/" + instruments[0] + "" + str(number) + ".wav")
+                                instruments[0] + "/" + instruments[0] + "" + str(number) + ".ogg")
                     cellT = Cell(posX + 470, posY, cell.color, cell.number, "Resources/sounds/" +
-                                 instruments[1] + "/" + instruments[1] + "" + str(number) + ".wav")
+                                 instruments[1] + "/" + instruments[1] + "" + str(number) + ".ogg")
                     cellTh = Cell(posX + 940, posY, cell.color, cell.number, "Resources/sounds/" +
-                                  instruments[2] + "/" + instruments[2] + "" + str(number) + ".wav")
+                                  instruments[2] + "/" + instruments[2] + "" + str(number) + ".ogg")
                     vect.append(cell)
                     vectT.append(cellT)
                     vectTh.append(cellTh)

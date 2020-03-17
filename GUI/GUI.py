@@ -4,8 +4,6 @@ import subprocess
 import os
 import ctypes
 from time import sleep
-from pydub import AudioSegment
-from pydub.playback import play
 pygame.init()
 
 
@@ -62,23 +60,21 @@ class GUI:
     def generateChange(self, screen):
         for i in range(len(self.automaton.cells)):
             for j in range(len(self.automaton.cells[i])):
+                song = pygame.mixer.Sound(self.automaton.cells[i][j].file)
+                songT = pygame.mixer.Sound(self.automaton.cellsT[i][j].file)
+                songTh = pygame.mixer.Sound(self.automaton.cellsTh[i][j].file)
+                songTh.play()
+                songT.play()
+                song.play()
                 pygame.draw.rect(screen, self.automaton.cells[i][j].color, ((
                     self.automaton.cells[i][j].posX + 2.9, self.automaton.cells[i][j].posY + 2.9, 30, 30)))
-                song = AudioSegment.from_wav(self.automaton.cells[i][j].file)
                 pygame.draw.rect(screen, self.automaton.cellsT[i][j].color, ((
                     self.automaton.cellsT[i][j].posX + 2.9, self.automaton.cellsT[i][j].posY + 2.9, 30, 30)))
-                songT = AudioSegment.from_wav(self.automaton.cellsT[i][j].file)
                 pygame.draw.rect(screen, self.automaton.cellsTh[i][j].color, ((
                     self.automaton.cellsTh[i][j].posX + 2.9, self.automaton.cellsTh[i][j].posY + 2.9, 30, 30)))
-                songTh = AudioSegment.from_wav(
-                    self.automaton.cellsTh[i][j].file)
-                mixed = song.overlay(songT)
-                mixedF = mixed.overlay(songTh)
-                play(mixedF)
-                song = None
-                songT = None
-                songTh = None
-                mixed = None
-                mixedF = None
                 pygame.display.update()
-                # time.sleep(1.0)
+                sleep(0.7)
+                song.stop()
+                songT.stop()
+                songTh.stop()
+                sleep(0.3)

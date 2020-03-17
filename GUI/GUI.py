@@ -101,7 +101,7 @@ class GUI:
                 songTh.stop()
                 sleep(0.1)
                 j += 1
-            if i >= 17 and i < len(self.automaton.cells) - 18:
+            if i >= 17 and i < len(self.automaton.cells):
                 i += 1
                 self.i = i
                 self.revaluate(screen)

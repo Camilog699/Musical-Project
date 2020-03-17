@@ -60,6 +60,8 @@ class Automaton:
         self.createCellR(comb, vector, instruments, posY + 40)
 
     def createCellR(self, comb, vector, instruments, posY):
+        if len(self.cells) is 33:
+            return True
         try:
             Prev = 0
             Curr = 0

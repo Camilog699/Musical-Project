@@ -5,3 +5,4 @@ class Cell:
         self.color = color
         self.number = number
         self.file = file
+        self.paint = False

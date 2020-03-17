@@ -66,6 +66,7 @@ class GUI:
                 songTh.play()
                 songT.play()
                 song.play()
+                sleep(0.5)
                 pygame.draw.rect(screen, self.automaton.cells[i][j].color, ((
                     self.automaton.cells[i][j].posX + 2.9, self.automaton.cells[i][j].posY + 2.9, 30, 30)))
                 pygame.draw.rect(screen, self.automaton.cellsT[i][j].color, ((
@@ -73,8 +74,8 @@ class GUI:
                 pygame.draw.rect(screen, self.automaton.cellsTh[i][j].color, ((
                     self.automaton.cellsTh[i][j].posX + 2.9, self.automaton.cellsTh[i][j].posY + 2.9, 30, 30)))
                 pygame.display.update()
-                sleep(0.7)
+                sleep(0.8)
                 song.stop()
                 songT.stop()
                 songTh.stop()
-                sleep(0.3)
+                sleep(0.2)
